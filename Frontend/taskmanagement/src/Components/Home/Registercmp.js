@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { encryptStorage } from '../../ConfigFiles/EncryptStorage';
 import { registeruser } from '../../Services/services';
 import {emailvalidate, namevalidate, passwordvalidate} from './validation'
 function Registercmp() {
@@ -26,6 +27,7 @@ function Registercmp() {
               registeruser(data).then(res=>{
                 alert(res.data.message)
                   if(res.data.success==true){
+                    encryptStorage.setItem("user",data)
                     window.location.replace("/login")
                   }
               })

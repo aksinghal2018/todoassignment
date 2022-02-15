@@ -4,7 +4,10 @@ import {LinkContainer,NavLink} from 'react-router-dom'
 import { encryptStorage } from '../../ConfigFiles/EncryptStorage'
 import {useSelector} from 'react-redux'
 function Headercmp() {
-    const datacmp=encryptStorage.getItem("user")==undefined?<></>:<><Dropdown.Item as={NavLink} to="/logout">Logout</Dropdown.Item>
+    const datacmp=encryptStorage.getItem("user")==undefined?<>
+    <Dropdown.Item as={NavLink} to="/login">Login</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} to="/register">Register</Dropdown.Item>
+    </>:<><Dropdown.Item as={NavLink} to="/logout">Logout</Dropdown.Item>
     <Dropdown.Item as={NavLink} to="/profile">Profile</Dropdown.Item>
     </>
     const datacmp2=encryptStorage.getItem("user")==undefined?<></>:<><Nav.Link as={NavLink} to="/taskmanagement" >Task Management</Nav.Link>
@@ -41,8 +44,7 @@ function Headercmp() {
                         {datacmp2}
                     </Nav>
                     <DropdownButton id="dropdown-basic-button" title="Contact" style={{marginLeft:"74%",marginRight:"3%"}}>
-                        <Dropdown.Item as={NavLink} to="/login">Login</Dropdown.Item>
-                        <Dropdown.Item as={NavLink} to="/register">Register</Dropdown.Item>
+                        
                         {datacmp}
                         <Dropdown.Item as={NavLink} to="/aboutus">Aboutus</Dropdown.Item>
                     </DropdownButton>

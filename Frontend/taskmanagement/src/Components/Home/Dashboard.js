@@ -35,7 +35,7 @@ function Dashboard() {
   }, []);
   
 
-  return <div style={{backgroundImage:`url("../images/background.jpg")`,backgroundRepeat:"no-repeat",backgroundSize:"cover",marginTop:"-20px",minheight:"800px",padding:"20px"}}>
+  return <div style={{backgroundImage:`url("../images/background.jpg")`,backgroundRepeat:"no-repeat",backgroundSize:"cover",marginTop:"-20px",minHeight:"800px",padding:"20px"}}>
     <div className='container' style={{border:"2px solid black",backgroundColor:"greenyellow"}}>
       <p style={{fontSize:"30px"}}>total tasks : {taskdata.length}</p>
       <p style={{fontSize:"30px"}}>Complete tasks : {completetask}</p>

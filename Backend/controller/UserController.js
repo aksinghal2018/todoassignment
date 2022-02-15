@@ -80,7 +80,8 @@ const registerUser= async (req, res , next)=>{
         else{
         res.json({ "success": true,
         "status_code": 200,
-        "message": `${firstname +lastname} was registered successfully`
+        "message": `${firstname +lastname} was registered successfully`,
+        "data":data
     });
         }
     })
