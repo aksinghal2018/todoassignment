@@ -333,6 +333,7 @@ const updatetask=(req,res,next)=>{
 }
 const gettasks=(req,res,next)=>{
     const email=req.body.email
+    console.log("req.body.email")
     console.log(req.body.email)
      userModel.findOne({email:email},(err,data)=>{
      var tasks=data.tasks   
@@ -365,14 +366,15 @@ const sorttask=(req,res,next)=>{
     console.log(req.body.email)
      userModel.findOne({email:email}).exec((err,data)=>{
      var tasks=data.tasks
+     var alltasks=data.tasks
      tasks.sort((a,b) => (a.priority > b.priority) ? -1 : ((b.priority > a.priority) ? 1 : 0))
-    // tasks.sort((a,b) => (a.creation_date > b.creation_date) ? 1 : ((b.creation_date > a.creation_date) ? -1 : 0))   
+    //tasks.sort((a,b) => (a.creation_date > b.creation_date) ? 1 : ((b.creation_date > a.creation_date) ? -1 : 0))   
      tasks.sort((a,b) => (a.deadline > b.deadline) ? 1 : ((b.deadline > a.deadline) ? -1 : 0))
      tasks = tasks.slice(0, 5)
          if(err) throw err;
 
          else {
-             res.json({Status:"true",message:"task get",task:tasks});
+             res.json({Status:"true",message:"task get",task:tasks,alltasks:alltasks});
          }
      })  
 }

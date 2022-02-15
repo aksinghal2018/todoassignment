@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect}from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,10 +12,18 @@ import Headercmp from "./Components/Home/Headercmp";
 import Home from "./Components/Home/Home";
 import Logincmp from "./Components/Home/Logincmp";
 import Logoutcmp from "./Components/Home/Logoutcmp";
+import Notfound from "./Components/Home/Notfound";
 import Profile from "./Components/Home/Profile";
 import Registercmp from "./Components/Home/Registercmp";
 import TaskManagement from "./Components/Home/TaskManagement";
+import { encryptStorage } from "./ConfigFiles/EncryptStorage";
 function App() {
+  
+  // useEffect(() => {
+  // if(!encryptStorage.getItem("user")){
+  //   window.location.href('/')
+  // }
+  // }, [])
   return (
     <div className="App">
       <Router>
@@ -49,7 +57,7 @@ function App() {
           <Route path="/aboutus" exact>
             <Aboutus />
           </Route>
-          
+          <Route component={Notfound} />
           </Switch>
       </div>
      </Router>

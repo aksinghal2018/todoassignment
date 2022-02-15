@@ -17,7 +17,7 @@ function TaskManagement() {
   const [prioritydata, setprioritydata] = useState(["Low","Medium","High"]);
   useEffect(() => {
     //console.log(encryptStorage.getItem("user"))
-    if (encryptStorage.getItem("user") == "undefined") {
+    if (encryptStorage.getItem("user") == undefined) {
       window.location.replace('/')
     }
     else{
@@ -26,6 +26,20 @@ function TaskManagement() {
         settasks(res.data.task)
       })
     }
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+    //alert(maxDate);
+    document.getElementById("deadline").setAttribute("min",maxDate)
+    
   }, []);
   const deletetask=(index)=>{
     removetask({email:encryptStorage.getItem("user").email,index:index}).then(data=>{
@@ -62,42 +76,42 @@ function TaskManagement() {
        }
      })
   }
-  const forwardbtn=(index)=>{
-    var task=tasks[index]
-    task.stage=(parseInt(task.stage)+1).toString()
-    const data = { name: document.getElementById("name").value, stage: document.getElementById("stage").value, priority: document.getElementById("priority").value, description: document.getElementById("description").value, deadline: document.getElementById("deadline").value, email: encryptStorage.getItem("user").email }
-    console.log(data)
-    const data111=({email:encryptStorage.getItem("user").email,index:index,task:task})
-     updatetask(data111).then(data=>{
-       console.log(data)
-       if(data.data.Status="true"){
-         window.location.reload("/")
-       }
-     })
-  }
-  const backwardbtn=(index)=>{
-    var task=tasks[index]
-    if(parseInt(task.stage)>0){
+  // const forwardbtn=(index)=>{
+  //   var task=tasks[index]
+  //   task.stage=(parseInt(task.stage)+1).toString()
+  //   const data = { name: document.getElementById("name").value, stage: document.getElementById("stage").value, priority: document.getElementById("priority").value, description: document.getElementById("description").value, deadline: document.getElementById("deadline").value, email: encryptStorage.getItem("user").email }
+  //   console.log(data)
+  //   const data111=({email:encryptStorage.getItem("user").email,index:index,task:task})
+  //    updatetask(data111).then(data=>{
+  //      console.log(data)
+  //      if(data.data.Status="true"){
+  //        window.location.reload("/")
+  //      }
+  //    })
+  // }
+  // const backwardbtn=(index)=>{
+  //   var task=tasks[index]
+  //   if(parseInt(task.stage)>0){
 
-      task.stage=(parseInt(task.stage)-1).toString()
-      const data = { name: document.getElementById("name").value, stage: document.getElementById("stage").value, priority: document.getElementById("priority").value, description: document.getElementById("description").value, deadline: document.getElementById("deadline").value, email: encryptStorage.getItem("user").email }
-      console.log(data)
-      const data111=({email:encryptStorage.getItem("user").email,index:index,task:task})
-       updatetask(data111).then(data=>{
-         console.log(data)
-         if(data.data.Status="true"){
-           window.location.reload("/")
-         }
-       })
-    }
-  }
+  //     task.stage=(parseInt(task.stage)-1).toString()
+  //     const data = { name: document.getElementById("name").value, stage: document.getElementById("stage").value, priority: document.getElementById("priority").value, description: document.getElementById("description").value, deadline: document.getElementById("deadline").value, email: encryptStorage.getItem("user").email }
+  //     console.log(data)
+  //     const data111=({email:encryptStorage.getItem("user").email,index:index,task:task})
+  //      updatetask(data111).then(data=>{
+  //        console.log(data)
+  //        if(data.data.Status="true"){
+  //          window.location.reload("/")
+  //        }
+  //      })
+  //   }
+  // }
   const submithandler = (e) => {
     e.preventDefault()
     if(name=="" || stage=="" || priority=="" || description=="" || deadline==""){
       alert("Feilds cannot be empty !!")
     }
     else{
-
+      
       const datedata=new Date().toISOString().slice(0, 10)
       console.log(datedata)
       const data = { name: name, stage: stage, priority: priority, description: description, deadline: deadline, email: encryptStorage.getItem("user").email,creation_date:new Date().toISOString().slice(0, 10) }
@@ -163,7 +177,8 @@ function TaskManagement() {
           </div>
           <div className="form-group">
             <label htmlFor="description">description</label>
-            <input type="text" className="form-control" id="description" placeholder="description" onChange={handler} />
+            <textarea class="form-control rounded-0" id="description" rows="3" onChange={handler} placeholder="description"></textarea>
+            
           </div>
           <div className="form-group">
             <label htmlFor="deadline"> Deadline</label>
