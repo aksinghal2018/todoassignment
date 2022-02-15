@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+Backend/node_modules
+# dependencies
+frontend/taskmanagement/node_modules
+frontend/taskmanagement/.pnp
+frontend/taskmanagement/.pnp.js
+
+# testing
+frontend/taskmanagement/coverage
+
+# production
+frontend/taskmanagement/build
+
+# misc
+frontend/taskmanagement/.DS_Store
+frontend/taskmanagement/.env.local
+frontend/taskmanagement/.env.development.local
+frontend/taskmanagement/.env.test.local
+frontend/taskmanagement/.env.production.local
+
+frontend/taskmanagement/npm-debug.log*
+frontend/taskmanagement/yarn-debug.log*
+frontend/taskmanagement/yarn-error.log*
