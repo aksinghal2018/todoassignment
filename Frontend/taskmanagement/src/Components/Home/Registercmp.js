@@ -27,7 +27,7 @@ function Registercmp() {
               registeruser(data).then(res=>{
                 alert(res.data.message)
                   if(res.data.success==true){
-                    encryptStorage.setItem("user",data)
+                    
                     window.location.replace("/login")
                   }
               })
